@@ -1,0 +1,649 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Transformada de Laplace &#8212; My sample book</title>
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
+    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=62ba249389abaaa9ffc34bf36a076bdc1d65ee18" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?digest=f31d14ad54b65d19161ba51d4ffff3a77ae00456"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="None">
+    
+
+    <!-- Google Analytics -->
+    
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="_static/logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">My sample book</h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="intro.html">
+                    Welcome to your Jupyter Book
+                </a>
+            </li>
+        </ul>
+        <ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown.html">
+   Markdown Files
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="notebooks.html">
+   Content with notebooks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="markdown-notebooks.html">
+   Notebooks with MyST Markdown
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<div class="menu-dropdown menu-dropdown-launch-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Launch interactive content">
+      <i class="fas fa-rocket"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/docs/filtros.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Launch on Binder"
+>
+  
+
+<span class="headerbtn__icon-container">
+  
+    <img src="_static/images/logo_binder.svg">
+  </span>
+<span class="headerbtn__text-container">Binder</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Ffiltros.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="_sources/filtros.ipynb"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.ipynb</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo-de-para-que-sirve-la-tl">
+   Ejemplo de para qué sirve la TL
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plano-complejo-s">
+   Plano complejo s
+  </a>
+ </li>
+</ul>
+
+    </nav>
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1>Transformada de Laplace</h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#ejemplo-de-para-que-sirve-la-tl">
+   Ejemplo de para qué sirve la TL
+  </a>
+ </li>
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#plano-complejo-s">
+   Plano complejo s
+  </a>
+ </li>
+</ul>
+
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <section id="transformada-de-laplace">
+<h1>Transformada de Laplace<a class="headerlink" href="#transformada-de-laplace" title="Permalink to this headline">#</a></h1>
+<p>Los entendidos dicen que el chisme este es lo mas cerca que puedes estar a tomar un sistema y restarle 2 o 3 años de matemática avanzada a la dificultad de su resolución solo con aplicarla. Por ejemplo podrías transformar una PDE en una ODE, que es más facil de resolver. Del mismo modo, también se podría transformar una ODE en una simple ecuación algebraica. Total, que al final donde es más útil esta cosa es en teoría de control.</p>
+<div class="math notranslate nohighlight">
+\[ c=\int_{t=0}^{\infty}f(t)e^{-st}dt \]</div>
+<p>No asustarse: la primera parte quiere decir que la transformada de laplace <span class="math notranslate nohighlight">\(\mathscr{L}\)</span> se aplica sobre una función que varía en el tiempo <span class="math notranslate nohighlight">\(f(t)\)</span>. Esta función <span class="math notranslate nohighlight">\(f(t)\)</span> (osea, cualquier función que tengamos entre manos) se multiplica por un exponencial decreciente <span class="math notranslate nohighlight">\(e^{-st}\)</span>. Así lo que se obtiene es una conversión de una función expresada en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>, a otra función expresada en base al plano complejo (o frecuencia compleja) <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">linspace</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># valor de la frecuancia compleja, no tiene por qué ser un entero</span>
+<span class="n">ft</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">ft</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output traceback highlight-ipythontb notranslate"><div class="highlight"><pre><span></span><span class="gt">---------------------------------------------------------------------------</span>
+<span class="ne">ModuleNotFoundError</span><span class="g g-Whitespace">                       </span>Traceback (most recent call last)
+<span class="nn">Input In [1],</span> in <span class="ni">&lt;cell line: 1&gt;</span><span class="nt">()</span>
+<span class="ne">----&gt; </span><span class="mi">1</span> <span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">linspace</span>
+<span class="g g-Whitespace">      </span><span class="mi">2</span> <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="g g-Whitespace">      </span><span class="mi">4</span> <span class="n">time</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+
+<span class="ne">ModuleNotFoundError</span>: No module named &#39;numpy&#39;
+</pre></div>
+</div>
+</div>
+</div>
+<p>En muchos sitios la integral aparece definida desde <span class="math notranslate nohighlight">\(-\infty\)</span> a <span class="math notranslate nohighlight">\(\infty\)</span>. Por lo general, para menesteres ingenieríles nos quedamos con la integral desde <span class="math notranslate nohighlight">\(0\)</span> a <span class="math notranslate nohighlight">\(\infty\)</span>, y dejaremos la parte negativa para movidas más matematicas.</p>
+</section>
+<section id="ejemplo-de-para-que-sirve-la-tl">
+<h1>Ejemplo de para qué sirve la TL<a class="headerlink" href="#ejemplo-de-para-que-sirve-la-tl" title="Permalink to this headline">#</a></h1>
+<p>Imaginemos que nuestra función es un simple seno:
+$<span class="math notranslate nohighlight">\(f(t) = sin(\omega t)\)</span>$</p>
+<p>Aplicar la Transformada de Laplace sobre ella hemos dicho que era simplemente multiplicarla por un exponencial decreciente <span class="math notranslate nohighlight">\(e^{-st}\)</span>:
+$<span class="math notranslate nohighlight">\( F(s) = \int_{t=0}^{\infty}sin(\omega t)e^{-st}dt \)</span>$</p>
+<p>Para los despistaos: <span class="math notranslate nohighlight">\(F(s)\)</span> es lo mismo que <span class="math notranslate nohighlight">\(\mathscr{L}\{f(t)\}\)</span>. Seguimos con la demostración.
+La resolución de esa integral no es inmediata, pero se pueden aplicar relaciones trigonométricas como this one: <span class="math notranslate nohighlight">\(sin(\omega t) = \frac{e^{j\omega t}-e^{-j\omega t}}{2j}\)</span>, la cual se puede obtener partiendo de la ecuación de euler. Pero vamos que no te lies con esas mierdas que no es importante para entender la TL. Estamos operando solo:</p>
+<div class="math notranslate nohighlight">
+\[ F(s) = \int_{t=0}^{\infty}\frac{e^{j\omega t}-e^{-j\omega t}}{2j}e^{-st}dt \]</div>
+<div class="math notranslate nohighlight">
+\[ F(s) = \int_{t=0}^{\infty}\frac{e^{-(s-j\omega)t}-e^{-(s+j\omega)t}}{2j}dt \]</div>
+<p>La integral de una exponencial es:
+$<span class="math notranslate nohighlight">\(  \int_{t_1}^{t_2} e^{\alpha t} dt= \frac{e^{\alpha t_2}}{\alpha}-\frac{e^{\alpha t_1}}{\alpha} \)</span>$</p>
+<p>Aplicamos:
+$<span class="math notranslate nohighlight">\( F(s) = \frac{1}{2j} \left( \left[ \frac{e^{-(s-j\omega)0}-e^{-(s+j\omega)\infty}}{s-j\omega} \right] -\left[ \frac{e^{-(s-j\omega)0}-e^{-(s+j\omega)\infty}}{s+j\omega} \right] \right) \)</span>$</p>
+<p>Sabemos que:</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(e^{-(s-j\omega) 0} = e^{0} = 0\)</span></p></li>
+<li><p><span class="math notranslate nohighlight">\(e^{-(s-j\omega)\infty} = e^{-\infty} = 0\)</span></p></li>
+</ul>
+<div class="math notranslate nohighlight">
+\[ F(s) = \frac{1}{2j} \left( \left[ \frac{1-0}{s-j\omega} \right] -\left[ \frac{1-0}{s+j\omega} \right] \right) = \frac{1}{2j} \left(  \frac{1}{s-j\omega}  -\frac{1}{s+j\omega}  \right) = \frac{\omega}{s^2 + \omega^2} \]</div>
+<p>De esta manera hemos convertido una ecuacion sinusoidal en un polinomio de segundo orden usando la Transformada de Laplace.</p>
+</section>
+<section id="plano-complejo-s">
+<h1>Plano complejo s<a class="headerlink" href="#plano-complejo-s" title="Permalink to this headline">#</a></h1>
+<p><span class="math notranslate nohighlight">\( s = \sigma + j\omega, \hspace{2em} siendo  \hspace{2em} j= \sqrt[]{-1}\)</span></p>
+<p>Se usa porque con estpo se puede modelar cualquier sinusoide.</p>
+<div class="math notranslate nohighlight">
+\[e^{st} = e^{(\sigma +j\omega)t} = e^{\sigma t +j\omega t} = e^{\sigma t}e^{j\omega t}\]</div>
+<p>Esto es lo mismo que antes, tenemos una función en función del tiempo <span class="math notranslate nohighlight">\(e^{j \omega t}\)</span>, multiplicada por una exponencial que puede ser creciente o decreciente según el valor de <span class="math notranslate nohighlight">\(\sigma\)</span></p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">linspace</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span> <span class="o">=</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span> <span class="c1"># valor de la frecuancia compleja, no tiene por qué ser un entero</span>
+<span class="n">ft</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">sigma</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">ft</span><span class="p">)</span>
+
+<span class="n">sigma</span> <span class="o">=</span> <span class="mi">1</span> <span class="c1"># valor de la frecuancia compleja, no tiene por qué ser un entero</span>
+<span class="n">ft</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">sigma</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
+<span class="n">ax</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">ft</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1e54d1a6530&gt;]
+</pre></div>
+</div>
+<img alt="_images/filtros_6_1.png" src="_images/filtros_6_1.png" />
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">rect</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">B</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    create a rectangle function</span>
+<span class="sd">    returns a numpy array that is 1 if |x| &lt; w and 0 if |x| &gt; w</span>
+<span class="sd">    B is the rectangle width centered at 0</span>
+<span class="sd">    x is the number of points in the array</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">B</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+    <span class="n">x</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+    
+    <span class="n">high</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">B</span><span class="p">)</span>
+    <span class="n">low1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="o">/</span><span class="mi">2</span> <span class="o">-</span> <span class="n">B</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span>    
+    <span class="n">x1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">low1</span><span class="p">,</span> <span class="n">high</span><span class="p">)</span>
+    <span class="n">rect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">x1</span><span class="p">,</span> <span class="n">low1</span><span class="p">)</span>
+    
+    <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">rect</span><span class="p">):</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">rect</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">rect</span><span class="p">):</span>
+        <span class="n">rect</span> <span class="o">=</span> <span class="n">rect</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">rect</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> widget
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">from</span> <span class="nn">matplotlib.animation</span> <span class="kn">import</span> <span class="n">FuncAnimation</span>
+
+<span class="c1"># constants and x array</span>
+<span class="n">pi</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+<span class="n">length</span> <span class="o">=</span> <span class="mi">2000</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="n">length</span><span class="p">)</span>
+
+<span class="c1"># create figure and axes </span>
+<span class="n">fig</span><span class="p">,</span> <span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">ax2</span><span class="p">)</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">6</span><span class="p">))</span>
+
+<span class="c1"># creating our line objects for the plots</span>
+<span class="n">sinc</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-b&#39;</span><span class="p">)</span>
+<span class="n">box</span><span class="p">,</span> <span class="o">=</span> <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="s1">&#39;-r&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">animate</span><span class="p">(</span><span class="n">B</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    this function gets called by FuncAnimation</span>
+<span class="sd">    each time called, it will replot with a different width &quot;B&quot;</span>
+<span class="sd">    </span>
+<span class="sd">    B: rect width</span>
+<span class="sd">    </span>
+<span class="sd">    return:</span>
+<span class="sd">        sinc: ydata</span>
+<span class="sd">        box: ydata</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="c1"># create our rect object</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">rect</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">B</span><span class="p">)</span>
+    <span class="n">box</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    
+    <span class="c1"># create our sinc object</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="p">(</span><span class="n">B</span> <span class="o">/</span> <span class="n">length</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">B</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">x</span> <span class="o">*</span> <span class="n">B</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+    <span class="n">sinc</span><span class="o">.</span><span class="n">set_ydata</span><span class="p">(</span><span class="n">F</span><span class="p">)</span>
+    
+    <span class="c1"># adjust the sinc plot height in a loop</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">min</span><span class="p">(</span><span class="n">F</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">F</span><span class="p">))</span>
+    
+    <span class="c1"># format the ax1 yticks</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax1</span><span class="p">,</span> <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">],</span> <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-1/4&#39;</span><span class="p">,</span> <span class="s1">&#39;1/4&#39;</span><span class="p">],</span>
+             <span class="n">yticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">F</span><span class="p">)],</span> <span class="n">yticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;0&#39;</span><span class="p">,</span> <span class="s1">&#39;B=</span><span class="si">{:.2f}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">((</span><span class="n">B</span> <span class="o">/</span> <span class="n">length</span><span class="p">))])</span>
+    
+    <span class="c1"># format the ax2 xticks to move with the box</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">setp</span><span class="p">(</span><span class="n">ax2</span><span class="p">,</span> <span class="n">yticks</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> 
+             <span class="n">xticks</span><span class="o">=</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">B</span> <span class="o">/</span> <span class="n">length</span><span class="p">,</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">B</span> <span class="o">/</span> <span class="n">length</span><span class="p">,</span> <span class="mi">1</span><span class="p">],</span> <span class="n">xticklabels</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;-1&#39;</span><span class="p">,</span> <span class="s1">&#39;-B/2&#39;</span><span class="p">,</span> <span class="s1">&#39;B/2&#39;</span><span class="p">,</span> <span class="s1">&#39;1&#39;</span><span class="p">])</span>
+    
+<span class="k">def</span> <span class="nf">init</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    initialize the figure</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.1</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mf">0.25</span><span class="p">,</span> <span class="mf">0.25</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">set_xlim</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax1</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">ax2</span><span class="o">.</span><span class="n">axhline</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;black&#39;</span><span class="p">,</span> <span class="n">lw</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">plt</span><span class="o">.</span><span class="n">rcParams</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;font.size&#39;</span><span class="p">:</span><span class="mi">14</span><span class="p">})</span>
+    
+    <span class="k">return</span> <span class="n">sinc</span><span class="p">,</span> <span class="n">box</span><span class="p">,</span>
+
+<span class="c1"># the FuncAnimation function iterates through our animate function using the steps array</span>
+<span class="n">step</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">steps</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="n">step</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">1000</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="o">-</span><span class="mi">1</span> <span class="o">*</span> <span class="n">step</span><span class="p">))</span>
+<span class="n">ani</span> <span class="o">=</span> <span class="n">FuncAnimation</span><span class="p">(</span><span class="n">fig</span><span class="p">,</span> <span class="n">animate</span><span class="p">,</span> <span class="n">steps</span><span class="p">,</span> <span class="n">init_func</span><span class="o">=</span><span class="n">init</span><span class="p">,</span> <span class="n">interval</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">blit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<script type="application/vnd.jupyter.widget-view+json">
+{"model_id": "9edd0795e5484b86890fa8e0a197747a", "version_major": 2, "version_minor": 0}
+</script></div>
+</div>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+    By The Jupyter Book Community<br/>
+  
+      &copy; Copyright 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
