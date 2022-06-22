@@ -33,10 +33,13 @@ ft = exp(-s*time)
 plt.plot(time,ft)
 ```
 ````
+## esto esta en verde por alguna razon
 
 ```{warning}
 En muchos sitios la integral aparece definida desde $-\infty$ a $\infty$. Por lo general, para menesteres ingenieríles nos quedamos con la integral desde $0$ a $\infty$, y dejaremos la parte negativa para movidas más matematicas.
 ```
+
+llas
 
 ```{code-cell}
 from numpy import exp, linspace
@@ -83,3 +86,15 @@ ft = exp(-s*time)
 plt.plot(time,ft)
 ```
 ````
+
+```python
+:tags: [margin]
+from numpy import exp, linspace
+import matplotlib.pyplot as plt
+
+time = linspace(0,1,50)
+s = 5 # valor de la frecuancia compleja, no tiene por qué ser un entero
+ft = exp(-s*time)
+
+plt.plot(time,ft)
+```

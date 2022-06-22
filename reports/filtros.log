@@ -17,74 +17,45 @@ Traceback (most recent call last):
     raise CellExecutionError.from_cell_and_msg(cell, exec_reply_content)
 nbclient.exceptions.CellExecutionError: An error occurred while executing the following cell:
 ------------------
-{
-    "tags": [
-        "full-width",
-    ]
-}
-%matplotlib inline
-from numpy import exp, linspace
-import matplotlib.pyplot as plt
+def make_fig(figsize):
+    from matplotlib import rcParams, cycler
+    import matplotlib.pyplot as plt
+    import numpy as np
+    plt.ion()
 
-fig, ax = plt.subplots(1,2, figsize = (12,4))
+    # Fixing random state for reproducibility
+    np.random.seed(19680801)
 
-time = linspace(-3,3,50)
-sigma = -1 # valor de la frecuancia compleja, no tiene por qué ser un entero
-ft = exp(-sigma*time)
-ax[0].plot(time,ft)
+    N = 10
+    data = [np.logspace(0, 1, 100) + .2 * np.random.randn(100) + ii for ii in range(N)]
+    data = np.array(data).T
+    cmap = plt.cm.coolwarm
+    rcParams['axes.prop_cycle'] = cycler(color=cmap(np.linspace(0, 1, N)))
 
-sigma = 1 # valor de la frecuancia compleja, no tiene por qué ser un entero
-ft = exp(-sigma*time)
-ax[1].plot(time,ft)
+
+    from matplotlib.lines import Line2D
+    custom_lines = [Line2D([0], [0], color=cmap(0.), lw=4),
+                    Line2D([0], [0], color=cmap(.5), lw=4),
+                    Line2D([0], [0], color=cmap(1.), lw=4)]
+
+    fig, ax = plt.subplots(figsize=figsize)
+    lines = ax.plot(data)
+    ax.legend(custom_lines, ['Cold', 'Medium', 'Hot'])
+make_fig(figsize=(10, 5))
 ------------------
 
 [1;31m---------------------------------------------------------------------------[0m
 [1;31mModuleNotFoundError[0m                       Traceback (most recent call last)
-Input [1;32mIn [1][0m, in [0;36m<cell line: 6>[1;34m()[0m
-[0;32m      1[0m {
-[0;32m      2[0m     [38;5;124m"[39m[38;5;124mtags[39m[38;5;124m"[39m: [
-[0;32m      3[0m         [38;5;124m"[39m[38;5;124mfull-width[39m[38;5;124m"[39m,
-[0;32m      4[0m     ]
-[0;32m      5[0m }
-[1;32m----> 6[0m [43mget_ipython[49m[43m([49m[43m)[49m[38;5;241;43m.[39;49m[43mrun_line_magic[49m[43m([49m[38;5;124;43m'[39;49m[38;5;124;43mmatplotlib[39;49m[38;5;124;43m'[39;49m[43m,[49m[43m [49m[38;5;124;43m'[39;49m[38;5;124;43minline[39;49m[38;5;124;43m'[39;49m[43m)[49m
-[0;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mimport[39;00m exp, linspace
-[0;32m      8[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+Input [1;32mIn [1][0m, in [0;36m<cell line: 25>[1;34m()[0m
+[0;32m     23[0m     lines [38;5;241m=[39m ax[38;5;241m.[39mplot(data)
+[0;32m     24[0m     ax[38;5;241m.[39mlegend(custom_lines, [[38;5;124m'[39m[38;5;124mCold[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mMedium[39m[38;5;124m'[39m, [38;5;124m'[39m[38;5;124mHot[39m[38;5;124m'[39m])
+[1;32m---> 25[0m [43mmake_fig[49m[43m([49m[43mfigsize[49m[38;5;241;43m=[39;49m[43m([49m[38;5;241;43m10[39;49m[43m,[49m[43m [49m[38;5;241;43m5[39;49m[43m)[49m[43m)[49m
 
-File [1;32m~\Desktop\jupBook\.venv\lib\site-packages\IPython\core\interactiveshell.py:2305[0m, in [0;36mInteractiveShell.run_line_magic[1;34m(self, magic_name, line, _stack_depth)[0m
-[0;32m   2303[0m     kwargs[[38;5;124m'[39m[38;5;124mlocal_ns[39m[38;5;124m'[39m] [38;5;241m=[39m [38;5;28mself[39m[38;5;241m.[39mget_local_scope(stack_depth)
-[0;32m   2304[0m [38;5;28;01mwith[39;00m [38;5;28mself[39m[38;5;241m.[39mbuiltin_trap:
-[1;32m-> 2305[0m     result [38;5;241m=[39m fn([38;5;241m*[39margs, [38;5;241m*[39m[38;5;241m*[39mkwargs)
-[0;32m   2306[0m [38;5;28;01mreturn[39;00m result
-
-File [1;32m~\Desktop\jupBook\.venv\lib\site-packages\IPython\core\magics\pylab.py:99[0m, in [0;36mPylabMagics.matplotlib[1;34m(self, line)[0m
-[0;32m     97[0m     [38;5;28mprint[39m([38;5;124m"[39m[38;5;124mAvailable matplotlib backends: [39m[38;5;132;01m%s[39;00m[38;5;124m"[39m [38;5;241m%[39m backends_list)
-[0;32m     98[0m [38;5;28;01melse[39;00m:
-[1;32m---> 99[0m     gui, backend [38;5;241m=[39m [38;5;28;43mself[39;49m[38;5;241;43m.[39;49m[43mshell[49m[38;5;241;43m.[39;49m[43menable_matplotlib[49m[43m([49m[43margs[49m[38;5;241;43m.[39;49m[43mgui[49m[38;5;241;43m.[39;49m[43mlower[49m[43m([49m[43m)[49m[43m [49m[38;5;28;43;01mif[39;49;00m[43m [49m[38;5;28;43misinstance[39;49m[43m([49m[43margs[49m[38;5;241;43m.[39;49m[43mgui[49m[43m,[49m[43m [49m[38;5;28;43mstr[39;49m[43m)[49m[43m [49m[38;5;28;43;01melse[39;49;00m[43m [49m[43margs[49m[38;5;241;43m.[39;49m[43mgui[49m[43m)[49m
-[0;32m    100[0m     [38;5;28mself[39m[38;5;241m.[39m_show_matplotlib_backend(args[38;5;241m.[39mgui, backend)
-
-File [1;32m~\Desktop\jupBook\.venv\lib\site-packages\IPython\core\interactiveshell.py:3478[0m, in [0;36mInteractiveShell.enable_matplotlib[1;34m(self, gui)[0m
-[0;32m   3457[0m [38;5;28;01mdef[39;00m [38;5;21menable_matplotlib[39m([38;5;28mself[39m, gui[38;5;241m=[39m[38;5;28;01mNone[39;00m):
-[0;32m   3458[0m     [38;5;124;03m"""Enable interactive matplotlib and inline figure support.[39;00m
-[0;32m   3459[0m 
-[0;32m   3460[0m [38;5;124;03m    This takes the following steps:[39;00m
-[1;32m   (...)[0m
-[0;32m   3476[0m [38;5;124;03m        display figures inline.[39;00m
-[0;32m   3477[0m [38;5;124;03m    """[39;00m
-[1;32m-> 3478[0m     [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib_inline[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbackend_inline[39;00m [38;5;28;01mimport[39;00m configure_inline_support
-[0;32m   3480[0m     [38;5;28;01mfrom[39;00m [38;5;21;01mIPython[39;00m[38;5;21;01m.[39;00m[38;5;21;01mcore[39;00m [38;5;28;01mimport[39;00m pylabtools [38;5;28;01mas[39;00m pt
-[0;32m   3481[0m     gui, backend [38;5;241m=[39m pt[38;5;241m.[39mfind_gui_and_backend(gui, [38;5;28mself[39m[38;5;241m.[39mpylab_gui_select)
-
-File [1;32m~\Desktop\jupBook\.venv\lib\site-packages\matplotlib_inline\backend_inline.py:6[0m, in [0;36m<module>[1;34m[0m
-[0;32m      1[0m [38;5;124;03m"""A matplotlib backend for publishing figures via display_data"""[39;00m
-[0;32m      3[0m [38;5;66;03m# Copyright (c) IPython Development Team.[39;00m
-[0;32m      4[0m [38;5;66;03m# Distributed under the terms of the BSD 3-Clause License.[39;00m
-[1;32m----> 6[0m [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m
-[0;32m      7[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbackends[39;00m[38;5;21;01m.[39;00m[38;5;21;01mbackend_agg[39;00m [38;5;28;01mimport[39;00m (  [38;5;66;03m# noqa[39;00m
-[0;32m      8[0m     new_figure_manager,
-[0;32m      9[0m     FigureCanvasAgg,
-[0;32m     10[0m     new_figure_manager_given_figure,
-[0;32m     11[0m )
-[0;32m     12[0m [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m [38;5;28;01mimport[39;00m colors
+Input [1;32mIn [1][0m, in [0;36mmake_fig[1;34m(figsize)[0m
+[0;32m      1[0m [38;5;28;01mdef[39;00m [38;5;21mmake_fig[39m(figsize):
+[1;32m----> 2[0m     [38;5;28;01mfrom[39;00m [38;5;21;01mmatplotlib[39;00m [38;5;28;01mimport[39;00m rcParams, cycler
+[0;32m      3[0m     [38;5;28;01mimport[39;00m [38;5;21;01mmatplotlib[39;00m[38;5;21;01m.[39;00m[38;5;21;01mpyplot[39;00m [38;5;28;01mas[39;00m [38;5;21;01mplt[39;00m
+[0;32m      4[0m     [38;5;28;01mimport[39;00m [38;5;21;01mnumpy[39;00m [38;5;28;01mas[39;00m [38;5;21;01mnp[39;00m
 
 [1;31mModuleNotFoundError[0m: No module named 'matplotlib'
 ModuleNotFoundError: No module named 'matplotlib'

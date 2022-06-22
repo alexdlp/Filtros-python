@@ -341,12 +341,36 @@ title="Print to PDF"
     </ul>
   </div>
 </div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
 
     </div>
 </div>
 
 <!-- Table of contents -->
 <div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#esto-esta-en-verde-por-alguna-razon">
+   esto esta en verde por alguna razon
+  </a>
+ </li>
+</ul>
+
+    </nav>
 </div>
     </div>
     <div class="article row">
@@ -358,6 +382,19 @@ title="Print to PDF"
                 <div id="print-main-content">
                     <div id="jb-print-toc">
                         
+                        <div>
+                            <h2> Contents </h2>
+                        </div>
+                        <nav aria-label="Page">
+                            <ul class="visible nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#esto-esta-en-verde-por-alguna-razon">
+   esto esta en verde por alguna razon
+  </a>
+ </li>
+</ul>
+
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -375,10 +412,13 @@ title="Print to PDF"
 <p class="sidebar-title"></p>
 <p>esto sale o que ostias</p>
 </aside>
+<section id="esto-esta-en-verde-por-alguna-razon">
+<h2>esto esta en verde por alguna razon<a class="headerlink" href="#esto-esta-en-verde-por-alguna-razon" title="Permalink to this headline">#</a></h2>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>En muchos sitios la integral aparece definida desde <span class="math notranslate nohighlight">\(-\infty\)</span> a <span class="math notranslate nohighlight">\(\infty\)</span>. Por lo general, para menesteres ingenieríles nos quedamos con la integral desde <span class="math notranslate nohighlight">\(0\)</span> a <span class="math notranslate nohighlight">\(\infty\)</span>, y dejaremos la parte negativa para movidas más matematicas.</p>
 </div>
+<p>llas</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">linspace</span>
@@ -442,6 +482,18 @@ En muchos sitios la integral aparece definida desde <span class="math notranslat
 </pre></div>
 </div>
 </aside>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="p">:</span><span class="n">tags</span><span class="p">:</span> <span class="p">[</span><span class="n">margin</span><span class="p">]</span>
+<span class="kn">from</span> <span class="nn">numpy</span> <span class="kn">import</span> <span class="n">exp</span><span class="p">,</span> <span class="n">linspace</span>
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+
+<span class="n">time</span> <span class="o">=</span> <span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">50</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="mi">5</span> <span class="c1"># valor de la frecuancia compleja, no tiene por qué ser un entero</span>
+<span class="n">ft</span> <span class="o">=</span> <span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">s</span><span class="o">*</span><span class="n">time</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">time</span><span class="p">,</span><span class="n">ft</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
 </section>
 
     <script type="text/x-thebe-config">
