@@ -404,7 +404,7 @@ title="Print to PDF"
 <h1>Transformada de Laplace<a class="headerlink" href="#transformada-de-laplace" title="Permalink to this headline">#</a></h1>
 <p>Los entendidos dicen que el chisme este es lo mas cerca que puedes estar a tomar un sistema y restarle 2 o 3 años de matemática avanzada a la dificultad de su resolución solo con aplicarla. Por ejemplo podrías transformar una PDE en una ODE, que es más facil de resolver. Del mismo modo, también se podría transformar una ODE en una simple ecuación algebraica. Total, que al final donde es más útil esta cosa es en teoría de control.</p>
 <div class="math notranslate nohighlight">
-\[ c=\int_{t=0}^{\infty}f(t)e^{-st}dt \]</div>
+\[ \mathscr{L}\{f(t)\}=\int_{t=0}^{\infty}f(t)e^{-st}dt \]</div>
 <p>No asustarse: la primera parte quiere decir que la transformada de laplace <span class="math notranslate nohighlight">\(\mathscr{L}\)</span> se aplica sobre una función que varía en el tiempo <span class="math notranslate nohighlight">\(f(t)\)</span>. Esta función <span class="math notranslate nohighlight">\(f(t)\)</span> (osea, cualquier función que tengamos entre manos) se multiplica por un exponencial decreciente <span class="math notranslate nohighlight">\(e^{-st}\)</span>. Así lo que se obtiene es una conversión de una función expresada en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>, a otra función expresada en base al plano complejo (o frecuencia compleja) <span class="math notranslate nohighlight">\(s\)</span>.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -489,7 +489,7 @@ $<span class="math notranslate nohighlight">\( F(s) = \frac{1}{2j} \left( \left[
 <div class="output text_plain highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>[&lt;matplotlib.lines.Line2D at 0x1e54d1a6530&gt;]
 </pre></div>
 </div>
-<img alt="_images/filtros_6_1.png" src="_images/filtros_6_1.png" />
+<img alt="_images/filtros_5_1.png" src="_images/filtros_5_1.png" />
 </div>
 </div>
 <div class="cell docutils container">
