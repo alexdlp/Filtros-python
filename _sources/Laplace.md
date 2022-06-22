@@ -21,7 +21,8 @@ $$ \mathscr{L}\{f(t)\}=\int_{t=0}^{\infty}f(t)e^{-st}dt $$
 No asustarse: la primera parte quiere decir que la transformada de laplace $\mathscr{L}$ se aplica sobre una función que varía en el tiempo $f(t)$. Esta función $f(t)$ (osea, cualquier función que tengamos entre manos) se multiplica por un exponencial decreciente $e^{-st}$. Así lo que se obtiene es una conversión de una función expresada en función del tiempo $t$, a otra función expresada en base al plano complejo (o frecuencia compleja) $s$. 
 
 ````{margin}
-```{code-cell}
+esto sale o que ostias
+```{code-cell} ipython3
 from numpy import exp, linspace
 import matplotlib.pyplot as plt
 

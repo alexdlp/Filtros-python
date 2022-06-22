@@ -54,6 +54,7 @@ const thebe_selector_output = ".output, .cell_output"
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Transformada de Laplace" href="Laplace.html" />
     <link rel="prev" title="Notebooks with MyST Markdown" href="markdown-notebooks.html" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="docsearch:language" content="None">
@@ -132,6 +133,11 @@ const thebe_selector_output = ".output, .cell_output"
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
+   Transformada de Laplace
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Laplace.html">
    Transformada de Laplace
   </a>
  </li>
@@ -406,6 +412,10 @@ title="Print to PDF"
 <div class="math notranslate nohighlight">
 \[ \mathscr{L}\{f(t)\}=\int_{t=0}^{\infty}f(t)e^{-st}dt \]</div>
 <p>No asustarse: la primera parte quiere decir que la transformada de laplace <span class="math notranslate nohighlight">\(\mathscr{L}\)</span> se aplica sobre una función que varía en el tiempo <span class="math notranslate nohighlight">\(f(t)\)</span>. Esta función <span class="math notranslate nohighlight">\(f(t)\)</span> (osea, cualquier función que tengamos entre manos) se multiplica por un exponencial decreciente <span class="math notranslate nohighlight">\(e^{-st}\)</span>. Así lo que se obtiene es una conversión de una función expresada en función del tiempo <span class="math notranslate nohighlight">\(t\)</span>, a otra función expresada en base al plano complejo (o frecuencia compleja) <span class="math notranslate nohighlight">\(s\)</span>.</p>
+<aside class="margin sidebar">
+<p class="sidebar-title"></p>
+<p>esto sale o no sale o que ostias</p>
+</aside>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p>En muchos sitios la integral aparece definida desde <span class="math notranslate nohighlight">\(-\infty\)</span> a <span class="math notranslate nohighlight">\(\infty\)</span>. Por lo general, para menesteres ingenieríles nos quedamos con la integral desde <span class="math notranslate nohighlight">\(0\)</span> a <span class="math notranslate nohighlight">\(\infty\)</span>, y dejaremos la parte negativa para movidas más matematicas.</p>
@@ -413,10 +423,13 @@ title="Print to PDF"
 </section>
 <section id="ejemplo-de-para-que-sirve-la-tl">
 <h1>Ejemplo de para qué sirve la TL<a class="headerlink" href="#ejemplo-de-para-que-sirve-la-tl" title="Permalink to this headline">#</a></h1>
-<p>Imaginemos que nuestra función es un simple seno:
-$<span class="math notranslate nohighlight">\(f(t) = sin(\omega t)\)</span>$</p>
-<p>Aplicar la Transformada de Laplace sobre ella hemos dicho que era simplemente multiplicarla por un exponencial decreciente <span class="math notranslate nohighlight">\(e^{-st}\)</span>:
-$<span class="math notranslate nohighlight">\( F(s) = \int_{t=0}^{\infty}sin(\omega t)e^{-st}dt \)</span>$</p>
+<p>Escribo esta frase para ver si se realizan los cambios.</p>
+<p>Imaginemos que nuestra función es un simple seno:</p>
+<div class="math notranslate nohighlight">
+\[f(t) = sin(\omega t)\]</div>
+<p>Aplicar la Transformada de Laplace sobre ella hemos dicho que era simplemente multiplicarla por un exponencial decreciente <span class="math notranslate nohighlight">\(e^{-st}\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[ F(s) = \int_{t=0}^{\infty}sin(\omega t)e^{-st}dt \]</div>
 <p>Para los despistaos: <span class="math notranslate nohighlight">\(F(s)\)</span> es lo mismo que <span class="math notranslate nohighlight">\(\mathscr{L}\{f(t)\}\)</span>. Seguimos con la demostración.
 La resolución de esa integral no es inmediata, pero se pueden aplicar relaciones trigonométricas como this one: <span class="math notranslate nohighlight">\(sin(\omega t) = \frac{e^{j\omega t}-e^{-j\omega t}}{2j}\)</span>, la cual se puede obtener partiendo de la ecuación de euler. Pero vamos que no te lies con esas mierdas que no es importante para entender la TL. Estamos operando solo:</p>
 <div class="math notranslate nohighlight">
@@ -652,6 +665,13 @@ $<span class="math notranslate nohighlight">\( F(s) = \frac{1}{2j} \left( \left[
             <p class="prev-next-subtitle">previous</p>
             <p class="prev-next-title">Notebooks with MyST Markdown</p>
         </div>
+    </a>
+    <a class='right-next' id="next-link" href="Laplace.html" title="next page">
+    <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Transformada de Laplace</p>
+    </div>
+    <i class="fas fa-angle-right"></i>
     </a>
 </div>
             </footer>
